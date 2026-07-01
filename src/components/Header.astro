@@ -1,0 +1,105 @@
+---
+interface Props {
+  locale?: 'en' | 'zh';
+}
+
+const { locale = 'en' } = Astro.props;
+
+import { siteContent } from '../content/en';
+import { siteContent as zhContent } from '../content/zh';
+const t = locale === 'zh' ? zhContent : siteContent;
+
+import { Image } from 'astro:assets';
+import logoImg from '../assets/cedarest-logo-horizontal.png';
+
+const navLinks = [
+  { key: 'home' as const, href: locale === 'zh' ? '/zh/' : '/' },
+  { key: 'about' as const, href: '#about' },
+  { key: 'services' as const, href: '#services' },
+  { key: 'work' as const, href: '#work' },
+  { key: 'contact' as const, href: '#contact' },
+];
+---
+
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-[var(--color-border)]">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex items-center h-16">
+      <!-- Logo -->
+      <a href={locale === 'zh' ? '/zh/' : '/'} class="flex items-center shrink-0">
+        <Image
+          src={logoImg}
+          alt="Cedarest"
+          class="h-8 w-auto"
+          format="webp"
+          quality={90}
+        />
+      </a>
+
+      <!-- Spacer: pushes nav + actions to the right -->
+      <div class="flex-1"></div>
+
+      <!-- Right: Nav + Language + CTA -->
+      <div class="flex items-center gap-6">
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex items-center gap-6">
+          {navLinks.map((link) => (
+            <a
+              href={link.href}
+              class="text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors duration-200"
+            >
+              {t.nav[link.key]}
+            </a>
+          ))}
+        </nav>
+
+        <!-- Language Switcher -->
+        <a
+          href={locale === 'zh' ? '/' : '/zh/'}
+          class="text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors duration-200"
+        >
+          {locale === 'zh' ? 'EN' : '中文'}
+        </a>
+
+        <!-- CTA Button -->
+        <a
+          href="#contact"
+          class="hidden sm:inline-flex items-center px-5 py-2 bg-[var(--color-primary)] text-white text-sm font-medium rounded-full hover:bg-[var(--color-primary-hover)] transition-colors duration-200"
+        >
+          {t.nav.letsTalk}
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <input type="checkbox" id="mobile-menu-toggle" class="hidden peer" />
+        <label
+          for="mobile-menu-toggle"
+          class="md:hidden flex flex-col gap-1.5 cursor-pointer p-2"
+          aria-label="Toggle menu"
+        >
+          <span class="block w-6 h-0.5 bg-[var(--color-text)] transition-transform duration-300 peer-checked:translate-y-2 peer-checked:rotate-45"></span>
+          <span class="block w-6 h-0.5 bg-[var(--color-text)] transition-opacity duration-300 peer-checked:opacity-0"></span>
+          <span class="block w-6 h-0.5 bg-[var(--color-text)] transition-transform duration-300 peer-checked:-translate-y-2 peer-checked:-rotate-45"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="md:hidden fixed inset-0 top-16 bg-white z-40 translate-x-full peer-checked:translate-x-0 transition-transform duration-300 ease-in-out">
+    <nav class="flex flex-col items-center gap-6 pt-12">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="text-lg font-medium text-[var(--color-text)] hover:text-[var(--color-primary)] transition-colors duration-200"
+        >
+          {t.nav[link.key]}
+        </a>
+      ))}
+      <a
+        href="#contact"
+        class="mt-4 inline-flex items-center px-8 py-3 bg-[var(--color-primary)] text-white font-medium rounded-full hover:bg-[var(--color-primary-hover)] transition-colors duration-200"
+      >
+        {t.nav.letsTalk}
+      </a>
+    </nav>
+  </div>
+</header>

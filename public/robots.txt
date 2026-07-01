@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cedarest.github.io/sitemap-index.xml

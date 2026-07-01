@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Design Tokens ── */
+:root {
+  /* Brand Greens */
+  --color-primary: #2D6A4F;
+  --color-primary-dark: #1B4332;
+  --color-primary-light: #D8F3DC;
+  --color-primary-hover: #245A42;
+
+  /* Neutrals */
+  --color-bg: #FFFFFF;
+  --color-surface: #F3F4F6;
+  --color-text: #1A1A1A;
+  --color-text-muted: #6B7280;
+  --color-border: #E5E7EB;
+}
+
+/* ─ Global Reset & Base ── */
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  scroll-padding-top: 4rem; /* offset for sticky header (h-16 = 64px) */
+}
+
+/* ── Scroll Snap Sections ── */
+.snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Scroll Down Animation ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+.animate-float {
+  animation: float 2s ease-in-out infinite;
+}

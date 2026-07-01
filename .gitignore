@@ -1,0 +1,20 @@
+# 素材文件夹
+素材/
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Astro
+.astro/
+
+# IDE
+.DS_Store
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local

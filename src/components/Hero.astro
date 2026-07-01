@@ -1,0 +1,61 @@
+---
+interface Props {
+  locale?: 'en' | 'zh';
+}
+
+const { locale = 'en' } = Astro.props;
+
+import { siteContent } from '../content/en';
+import { siteContent as zhContent } from '../content/zh';
+const t = locale === 'zh' ? zhContent : siteContent;
+
+import { Image } from 'astro:assets';
+import heroBg from '../assets/hero-bg.png';
+---
+
+<section class="snap-section relative min-h-screen flex items-center overflow-hidden">
+  <!-- Background Layer -->
+  <div class="absolute inset-0">
+    <Image
+      src={heroBg}
+      alt=""
+      class="absolute inset-0 w-full h-full object-cover"
+      format="webp"
+      quality={80}
+    />
+    <!-- White gradient overlay: top ~35% pure white, fading to transparent -->
+    <div class="absolute inset-0 bg-gradient-to-b from-white via-white/70 via-40% to-transparent"></div>
+  </div>
+
+  <!-- Content Layer -->
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full pt-32 pb-20">
+    <div class="max-w-2xl">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text)] leading-[1.15] tracking-tight">
+        {t.hero.titleBefore}
+        <br />
+        <span class="text-[var(--color-primary)]">{t.hero.titleAccent}</span>{' '}
+        {t.hero.titleAfter}
+      </h1>
+      <p class="mt-6 text-base md:text-lg text-[var(--color-text-muted)] max-w-lg leading-relaxed">
+        {t.hero.subtitle}
+      </p>
+      <a
+        href="#whatwedo"
+        class="mt-8 inline-flex items-center gap-2 px-7 py-3 bg-[var(--color-primary)] text-white font-medium rounded-full hover:bg-[var(--color-primary-hover)] transition-colors duration-200"
+      >
+        {t.hero.cta}
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Scroll Down Indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-float">
+    <span class="text-xs text-[var(--color-text-muted)] tracking-wide">{t.hero.scrollDown}</span>
+    <svg width="16" height="24" viewBox="0 0 16 24" fill="none" aria-hidden="true">
+      <path d="M8 4v14M4 14l4 4 4-4" stroke="var(--color-text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </div>
+</section>

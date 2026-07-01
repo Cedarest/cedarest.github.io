@@ -1,0 +1,119 @@
+---
+interface Props {
+  locale?: 'en' | 'zh';
+}
+
+const { locale = 'en' } = Astro.props;
+
+import { siteContent } from '../content/en';
+import { siteContent as zhContent } from '../content/zh';
+const t = locale === 'zh' ? zhContent : siteContent;
+
+import { Image } from 'astro:assets';
+import footerBg from '../assets/footer-bg.png';
+import footerLogo from '../assets/cedarest-logo-horizontal-white.png';
+---
+
+<!-- CTA Section -->
+<section id="contact" class="relative overflow-hidden">
+  <div class="absolute inset-0">
+    <Image
+      src={footerBg}
+      alt=""
+      class="w-full h-full object-cover"
+      format="webp"
+      quality={80}
+    />
+    <div class="absolute inset-0 bg-[var(--color-primary-dark)]/85"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+    <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+      <div class="max-w-xl">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+          {t.cta.title}
+        </h2>
+      </div>
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+        <p class="text-white/70 text-sm max-w-xs">
+          {t.cta.subtitle}
+        </p>
+        <a
+          href="mailto:hello@cedarest.com"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-white text-[var(--color-primary-dark)] font-semibold rounded-full hover:bg-white/90 transition-colors duration-200"
+        >
+          {t.cta.button}
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-[var(--color-primary-dark)] border-t border-white/10">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-8">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <!-- Logo -->
+      <a href={locale === 'zh' ? '/zh/' : '/'} class="flex items-center shrink-0">
+        <Image
+          src={footerLogo}
+          alt="Cedarest"
+          class="h-7 w-auto"
+          format="webp"
+          quality={90}
+        />
+      </a>
+
+      <!-- Nav Links -->
+      <nav class="flex items-center gap-6">
+        {[
+          { key: 'home' as const, href: locale === 'zh' ? '/zh/' : '/' },
+          { key: 'about' as const, href: '#about' },
+          { key: 'services' as const, href: '#services' },
+          { key: 'work' as const, href: '#work' },
+          { key: 'contact' as const, href: '#contact' },
+        ].map((link) => (
+          <a
+            href={link.href}
+            class="text-sm text-white/70 hover:text-white transition-colors duration-200"
+          >
+            {t.footer.nav[link.key]}
+          </a>
+        ))}
+      </nav>
+
+      <!-- Social Icons -->
+      <div class="flex items-center gap-4">
+        <!-- LinkedIn -->
+        <a href="#" class="text-white/70 hover:text-white transition-colors duration-200" aria-label="LinkedIn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+            <rect x="2" y="9" width="4" height="12" />
+            <circle cx="4" cy="4" r="2" />
+          </svg>
+        </a>
+        <!-- Twitter / X -->
+        <a href="#" class="text-white/70 hover:text-white transition-colors duration-200" aria-label="Twitter">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+          </svg>
+        </a>
+        <!-- Mail -->
+        <a href="mailto:hello@cedarest.com" class="text-white/70 hover:text-white transition-colors duration-200" aria-label="Email">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2" />
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="mt-8 pt-6 border-t border-white/10 text-center">
+      <p class="text-xs text-white/40">© 2024 Cedarest. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

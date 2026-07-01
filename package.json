@@ -1,0 +1,19 @@
+{
+  "name": "cedarest",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.2.0",
+    "@astrojs/tailwind": "^6.0.0",
+    "astro": "^5.7.0",
+    "autoprefixer": "^10.5.2",
+    "postcss": "^8.5.16",
+    "tailwindcss": "^3.4.19"
+  }
+}
