@@ -10,7 +10,7 @@ import { siteContent as zhContent } from '../content/zh';
 const t = locale === 'zh' ? zhContent : siteContent;
 
 import { Image } from 'astro:assets';
-import logoImg from '../assets/cedarest-logo-horizontal.png';
+import logoImg from '../assets/cedarest-logo-horizontal-white.png';
 
 const navLinks = [
   { key: 'home' as const, href: locale === 'zh' ? '/zh/' : '/' },
@@ -21,7 +21,7 @@ const navLinks = [
 ];
 ---
 
-<header class="sticky top-0 z-50 border-b" style="background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-color: rgba(255, 255, 255, 0.2); box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 1px 3px rgba(0, 0, 0, 0.05);">
+<header class="sticky top-0 z-50 border-b" style="background: var(--header-bg); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-color: var(--header-border); box-shadow: 0 1px 0 var(--header-shadow-inset) inset, 0 1px 3px var(--header-shadow);">
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
     <div class="flex items-center h-16">
       <!-- Logo -->
@@ -45,7 +45,7 @@ const navLinks = [
           {navLinks.map((link) => (
             <a
               href={link.href}
-              class="text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors duration-200"
+              class="text-sm font-medium text-[var(--header-text)] hover:text-[var(--color-primary)] transition-colors duration-200"
             >
               {t.nav[link.key]}
             </a>
@@ -55,7 +55,7 @@ const navLinks = [
         <!-- Language Switcher -->
         <a
           href={locale === 'zh' ? '/' : '/zh/'}
-          class="text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors duration-200"
+          class="text-sm font-medium text-[var(--header-text)] hover:text-[var(--color-primary)] transition-colors duration-200"
         >
           {locale === 'zh' ? 'EN' : '中文'}
         </a>
@@ -84,7 +84,7 @@ const navLinks = [
   </div>
 
   <!-- Mobile Menu -->
-  <div class="md:hidden fixed inset-0 top-16 bg-white z-40 translate-x-full peer-checked:translate-x-0 transition-transform duration-300 ease-in-out">
+  <div class="md:hidden fixed inset-0 top-16 bg-[var(--color-bg)] z-40 translate-x-full peer-checked:translate-x-0 transition-transform duration-300 ease-in-out">
     <nav class="flex flex-col items-center gap-6 pt-12">
       {navLinks.map((link) => (
         <a

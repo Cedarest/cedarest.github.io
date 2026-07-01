@@ -16,6 +16,46 @@
   --color-text: #1A1A1A;
   --color-text-muted: #6B7280;
   --color-border: #E5E7EB;
+
+  /* Header */
+  --header-bg: rgba(255, 255, 255, 0.65);
+  --header-border: rgba(255, 255, 255, 0.2);
+  --header-shadow-inset: rgba(255, 255, 255, 0.1);
+  --header-shadow: rgba(0, 0, 0, 0.05);
+  --header-text: #6B7280;
+
+  /* Hero overlay */
+  --hero-overlay-from: #FFFFFF;
+  --hero-overlay-via: rgba(255, 255, 255, 0.7);
+}
+
+/* ── Dark Mode ── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: #52B788;
+    --color-primary-dark: #2D6A4F;
+    --color-primary-light: #1B4332;
+    --color-primary-hover: #74C69D;
+
+    --color-bg: #0A0A0A;
+    --color-surface: #161616;
+    --color-text: #F0F0F0;
+    --color-text-muted: #9CA3AF;
+    --color-border: #262626;
+
+    --header-bg: rgba(255, 255, 255, 0.3);
+    --header-border: rgba(255, 255, 255, 0.08);
+    --header-shadow-inset: rgba(255, 255, 255, 0.06);
+    --header-shadow: rgba(0, 0, 0, 0.2);
+    --header-text: #52B788;
+
+    --hero-overlay-from: rgba(10, 10, 10, 0.15);
+    --hero-overlay-via: rgba(10, 10, 10, 0.1);
+  }
+
+  img {
+    filter: brightness(0.9);
+  }
 }
 
 /* ─ Global Reset & Base ── */
