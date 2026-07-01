@@ -10,7 +10,8 @@ import { siteContent as zhContent } from '../content/zh';
 const t = locale === 'zh' ? zhContent : siteContent;
 
 import { Image } from 'astro:assets';
-import logoImg from '../assets/cedarest-logo-horizontal-white.png';
+import logoDarkText from '../assets/cedarest-logo-horizontal.png';
+import logoWhiteText from '../assets/cedarest-logo-horizontal-white.png';
 
 const navLinks = [
   { key: 'home' as const, href: locale === 'zh' ? '/zh/' : '/' },
@@ -26,10 +27,19 @@ const navLinks = [
     <div class="flex items-center h-16">
       <!-- Logo -->
       <a href={locale === 'zh' ? '/zh/' : '/'} class="flex items-center shrink-0 mr-3">
+        <!-- Light Mode Logo (Dark Text) -->
         <Image
-          src={logoImg}
+          src={logoDarkText}
           alt="Cedarest"
-          class="h-[38.4px] w-auto"
+          class="h-[38.4px] w-auto dark:hidden"
+          format="webp"
+          quality={90}
+        />
+        <!-- Dark Mode Logo (White Text) -->
+        <Image
+          src={logoWhiteText}
+          alt="Cedarest"
+          class="h-[38.4px] w-auto hidden dark:block"
           format="webp"
           quality={90}
         />
@@ -84,19 +94,19 @@ const navLinks = [
 </header>
 
 <!-- Mobile Menu -->
-<div id="mobile-menu" class="md:hidden fixed inset-0 top-16 z-40 translate-x-full transition-transform duration-300 ease-in-out" style="background: rgba(10, 10, 10, 0.85); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%);">
+<div id="mobile-menu" class="md:hidden fixed inset-0 top-16 z-40 translate-x-full transition-transform duration-300 ease-in-out border-t border-[var(--color-border)]" style="background: var(--mobile-menu-bg, rgba(255, 255, 255, 0.95)); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%);">
   <nav class="flex flex-col items-center gap-6 pt-12">
     {navLinks.map((link) => (
       <a
         href={link.href}
-        class="text-lg font-medium text-[var(--color-text)] hover:text-[var(--color-primary)] transition-colors duration-200"
+        class="mobile-menu-link text-lg font-medium text-[var(--color-text)] hover:text-[var(--color-primary)] transition-colors duration-200"
       >
         {t.nav[link.key]}
       </a>
     ))}
     <a
       href="#contact"
-      class="mt-4 inline-flex items-center px-8 py-3 bg-[var(--color-primary)] text-white font-medium rounded-full hover:bg-[var(--color-primary-hover)] transition-colors duration-200"
+      class="mobile-menu-link mt-4 inline-flex items-center px-8 py-3 bg-[var(--color-primary)] text-white font-medium rounded-full hover:bg-[var(--color-primary-hover)] transition-colors duration-200"
     >
       {t.nav.letsTalk}
     </a>
@@ -108,19 +118,33 @@ const navLinks = [
   const menu = document.getElementById('mobile-menu');
   const bars = btn?.querySelectorAll('span');
 
-  btn?.addEventListener('click', () => {
-    const isOpen = menu?.classList.toggle('translate-x-0');
-    // Animate hamburger to X
-    if (bars && bars.length === 3) {
-      if (isOpen) {
-        bars[0].classList.add('translate-y-2', 'rotate-45');
-        bars[1].classList.add('opacity-0');
-        bars[2].classList.add('-translate-y-2', '-rotate-45');
-      } else {
-        bars[0].classList.remove('translate-y-2', 'rotate-45');
-        bars[1].classList.remove('opacity-0');
-        bars[2].classList.remove('-translate-y-2', '-rotate-45');
-      }
+  function toggleMenu(forceClose = false) {
+    if (!menu || !bars || bars.length !== 3) return;
+    
+    const isCurrentlyClosed = menu.classList.contains('translate-x-full');
+    
+    if (forceClose || !isCurrentlyClosed) {
+      // Close menu
+      menu.classList.add('translate-x-full');
+      bars[0].classList.remove('translate-y-2', 'rotate-45');
+      bars[1].classList.remove('opacity-0');
+      bars[2].classList.remove('-translate-y-2', '-rotate-45');
+    } else {
+      // Open menu
+      menu.classList.remove('translate-x-full');
+      bars[0].classList.add('translate-y-2', 'rotate-45');
+      bars[1].classList.add('opacity-0');
+      bars[2].classList.add('-translate-y-2', '-rotate-45');
     }
+  }
+
+  btn?.addEventListener('click', () => toggleMenu());
+
+  // Close menu when a link is clicked
+  const links = menu?.querySelectorAll('.mobile-menu-link');
+  links?.forEach(link => {
+    link.addEventListener('click', () => {
+      toggleMenu(true);
+    });
   });
 </script>

@@ -23,6 +23,7 @@
   --header-shadow-inset: rgba(255, 255, 255, 0.1);
   --header-shadow: rgba(0, 0, 0, 0.05);
   --header-text: #6B7280;
+  --mobile-menu-bg: rgba(255, 255, 255, 0.95);
 
   /* Hero overlay */
   --hero-overlay-from: #FFFFFF;
@@ -49,6 +50,7 @@
     --header-shadow-inset: rgba(255, 255, 255, 0.06);
     --header-shadow: rgba(0, 0, 0, 0.2);
     --header-text: #52B788;
+    --mobile-menu-bg: rgba(10, 10, 10, 0.95);
 
     --hero-overlay-from: rgba(10, 10, 10, 0.15);
     --hero-overlay-via: rgba(10, 10, 10, 0.1);
