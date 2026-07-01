@@ -10,7 +10,7 @@ export const siteContent = {
   hero: {
     titleBefore: 'Rooted in nature,',
     titleAccent: 'Building',
-    titleAfter: 'the future.',
+    titleAfter: ' the future.',
     subtitle:
       'Cedarest is a forward-thinking fintech company dedicated to demonstrating the strength and resilience of cedar in the ever-changing financial markets.',
     cta: 'Learn More',
