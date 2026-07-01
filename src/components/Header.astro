@@ -69,37 +69,58 @@ const navLinks = [
         </a>
 
         <!-- Mobile Menu Button -->
-        <input type="checkbox" id="mobile-menu-toggle" class="hidden peer" />
-        <label
-          for="mobile-menu-toggle"
+        <button
+          id="mobile-menu-btn"
           class="md:hidden flex flex-col gap-1.5 cursor-pointer p-2"
           aria-label="Toggle menu"
         >
-          <span class="block w-6 h-0.5 bg-[var(--color-text)] transition-transform duration-300 peer-checked:translate-y-2 peer-checked:rotate-45"></span>
-          <span class="block w-6 h-0.5 bg-[var(--color-text)] transition-opacity duration-300 peer-checked:opacity-0"></span>
-          <span class="block w-6 h-0.5 bg-[var(--color-text)] transition-transform duration-300 peer-checked:-translate-y-2 peer-checked:-rotate-45"></span>
-        </label>
+          <span class="block w-6 h-0.5 bg-[var(--color-text)] transition-transform duration-300"></span>
+          <span class="block w-6 h-0.5 bg-[var(--color-text)] transition-opacity duration-300"></span>
+          <span class="block w-6 h-0.5 bg-[var(--color-text)] transition-transform duration-300"></span>
+        </button>
       </div>
     </div>
   </div>
-
-  <!-- Mobile Menu -->
-  <div class="md:hidden fixed inset-0 top-16 bg-[var(--color-bg)] z-40 translate-x-full peer-checked:translate-x-0 transition-transform duration-300 ease-in-out">
-    <nav class="flex flex-col items-center gap-6 pt-12">
-      {navLinks.map((link) => (
-        <a
-          href={link.href}
-          class="text-lg font-medium text-[var(--color-text)] hover:text-[var(--color-primary)] transition-colors duration-200"
-        >
-          {t.nav[link.key]}
-        </a>
-      ))}
-      <a
-        href="#contact"
-        class="mt-4 inline-flex items-center px-8 py-3 bg-[var(--color-primary)] text-white font-medium rounded-full hover:bg-[var(--color-primary-hover)] transition-colors duration-200"
-      >
-        {t.nav.letsTalk}
-      </a>
-    </nav>
-  </div>
 </header>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="md:hidden fixed inset-0 top-16 z-40 translate-x-full transition-transform duration-300 ease-in-out" style="background: rgba(10, 10, 10, 0.85); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%);">
+  <nav class="flex flex-col items-center gap-6 pt-12">
+    {navLinks.map((link) => (
+      <a
+        href={link.href}
+        class="text-lg font-medium text-[var(--color-text)] hover:text-[var(--color-primary)] transition-colors duration-200"
+      >
+        {t.nav[link.key]}
+      </a>
+    ))}
+    <a
+      href="#contact"
+      class="mt-4 inline-flex items-center px-8 py-3 bg-[var(--color-primary)] text-white font-medium rounded-full hover:bg-[var(--color-primary-hover)] transition-colors duration-200"
+    >
+      {t.nav.letsTalk}
+    </a>
+  </nav>
+</div>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const bars = btn?.querySelectorAll('span');
+
+  btn?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('translate-x-0');
+    // Animate hamburger to X
+    if (bars && bars.length === 3) {
+      if (isOpen) {
+        bars[0].classList.add('translate-y-2', 'rotate-45');
+        bars[1].classList.add('opacity-0');
+        bars[2].classList.add('-translate-y-2', '-rotate-45');
+      } else {
+        bars[0].classList.remove('translate-y-2', 'rotate-45');
+        bars[1].classList.remove('opacity-0');
+        bars[2].classList.remove('-translate-y-2', '-rotate-45');
+      }
+    }
+  });
+</script>
