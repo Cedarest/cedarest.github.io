@@ -20,15 +20,7 @@
 
 /* ─ Global Reset & Base ── */
 html {
-  scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
   scroll-padding-top: 4rem; /* offset for sticky header (h-16 = 64px) */
-}
-
-/* ── Scroll Snap Sections ── */
-.snap-section {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
 }
 
 body {

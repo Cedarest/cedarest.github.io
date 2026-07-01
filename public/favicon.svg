@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none">
-  <path d="M20 4L8 20H14L6 32H16L10 38H30L24 32H34L26 20H32L20 4Z" fill="#2D6A4F"/>
-  <path d="M20 10L12 22H17L10 33H19L14 38H26L21 33H30L23 22H28L20 10Z" fill="#2D6A4F" opacity="0.7"/>
-  <path d="M20 16L15 24H18L13 32H21L17 37H23L19 32H27L22 24H25L20 16Z" fill="#2D6A4F" opacity="0.4"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 72" fill="none">
+  <!-- Cedarest Tree - Simplified layered cedar tree -->
+  <!-- Top peak -->
+  <path d="M32 4 L18 18 L22 18 L22 22 L14 28 L18 28 L18 33 L10 39 L14 39 L14 44 L22 50 L26 50 L22 56 L32 56 L42 56 L38 50 L42 50 L50 44 L50 39 L54 39 L46 33 L46 28 L50 28 L42 22 L42 18 L46 18 Z" fill="#2D6A4F"/>
 </svg>

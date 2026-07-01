@@ -57,18 +57,18 @@ import footerLogo from '../assets/cedarest-logo-horizontal-white.png';
   <div class="max-w-7xl mx-auto px-6 lg:px-8 py-8">
     <div class="flex flex-col md:flex-row items-center justify-between gap-6">
       <!-- Logo -->
-      <a href={locale === 'zh' ? '/zh/' : '/'} class="flex items-center shrink-0">
+      <a href={locale === 'zh' ? '/zh/' : '/'} class="flex items-center shrink-0 mr-3">
         <Image
           src={footerLogo}
           alt="Cedarest"
-          class="h-7 w-auto"
+          class="h-[38.4px] w-auto"
           format="webp"
           quality={90}
         />
       </a>
 
       <!-- Nav Links -->
-      <nav class="flex items-center gap-6">
+      <nav class="flex items-center gap-9">
         {[
           { key: 'home' as const, href: locale === 'zh' ? '/zh/' : '/' },
           { key: 'about' as const, href: '#about' },
