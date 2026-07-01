@@ -12,7 +12,7 @@ export const siteContent = {
     titleAccent: '构筑',
     titleAfter: '未来。',
     subtitle:
-      'Cedarest（雪松之极） 是一家以前瞻性思维驱动的金融科技公司，致力于在瞬息万变的金融市场中展现雪松般的力量与韧性。',
+      'Cedarest（雪松之极） 是一家数据驱动的金融科技公司，致力于在瞬息万变的金融市场中展现雪松般的力量与韧性。',
     cta: '了解更多',
     scrollDown: '向下滚动',
   },

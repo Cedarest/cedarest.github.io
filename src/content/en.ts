@@ -12,7 +12,7 @@ export const siteContent = {
     titleAccent: 'Building',
     titleAfter: ' the future.',
     subtitle:
-      'Cedarest is a forward-thinking fintech company dedicated to demonstrating the strength and resilience of cedar in the ever-changing financial markets.',
+      'Cedarest is a data-driven fintech company dedicated to demonstrating the strength and resilience of cedar in the ever-changing financial markets.',
     cta: 'Learn More',
     scrollDown: 'Scroll Down',
   },
