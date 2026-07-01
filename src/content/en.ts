@@ -12,19 +12,19 @@ export const siteContent = {
     titleAccent: 'Building',
     titleAfter: 'the future.',
     subtitle:
-      'Cedarest is a forward-thinking company inspired by the strength and resilience of cedar.',
+      'Cedarest is a forward-thinking fintech company dedicated to demonstrating the strength and resilience of cedar in the ever-changing financial markets.',
     cta: 'Learn More',
     scrollDown: 'Scroll Down',
   },
   whatWeDo: {
     label: 'What We Do',
-    title: 'Solutions that support growth.',
+    title: 'Data-driven investing, empowering clients to achieve their goals.',
     subtitle:
-      'We provide services that help businesses thrive in a changing world.',
+      'We provide professional services to help businesses thrive in a changing world.',
     pillars: [
       {
-        title: 'Sustainable Strategy',
-        desc: 'Building long-term value through responsible decisions.',
+        title: 'Data-First Strategy',
+        desc: 'Creating long-term value based on verifiable data.',
       },
       {
         title: 'Innovative Solutions',
@@ -39,8 +39,8 @@ export const siteContent = {
   },
   about: {
     label: 'About Cedarest',
-    title: 'Growing with purpose.',
-    desc: 'We believe in creating value that lasts — for our clients, our communities, and the planet.',
+    title: 'A fintech company founded in 2026.',
+    desc: 'We believe data can create lasting value — for enterprises, for humanity, and for the planet.',
     linkText: 'Our Story',
   },
   services: {
@@ -48,16 +48,16 @@ export const siteContent = {
     title: 'Services',
     items: [
       {
-        title: 'Consulting',
-        desc: 'Strategic guidance to help you grow with confidence.',
+        title: 'Portfolio Analysis',
+        desc: 'Quantitative analysis of portfolio risk exposure and returns to help optimize your asset allocation.',
       },
       {
-        title: 'Development',
-        desc: 'Custom solutions built for your business.',
+        title: 'Goal Tracking',
+        desc: 'Event-driven tracking strategies to help you monitor progress toward your investment objectives.',
       },
       {
-        title: 'Growth',
-        desc: 'Data-driven strategies for sustainable growth.',
+        title: 'Research Reports',
+        desc: 'AI-driven in-depth research reports providing market insights and investment recommendations.',
       },
     ],
   },

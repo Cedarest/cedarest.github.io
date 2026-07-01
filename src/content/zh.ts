@@ -9,22 +9,22 @@ export const siteContent = {
   },
   hero: {
     titleBefore: '扎根自然，',
-    titleAccent: '筑梦',
+    titleAccent: '构筑',
     titleAfter: '未来。',
     subtitle:
-      'Cedarest 是一家以前瞻性思维驱动的公司，汲取雪松的力量与韧性。',
+      'Cedarest（雪松之极） 是一家以前瞻性思维驱动的金融科技公司，致力于在瞬息万变的金融市场中展现雪松般的力量与韧性。',
     cta: '了解更多',
     scrollDown: '向下滚动',
   },
   whatWeDo: {
     label: '我们的理念',
-    title: '助力成长的全方位方案。',
+    title: '数据驱动投资，助力客户成就自我',
     subtitle:
       '我们提供专业服务，帮助企业在瞬息万变的世界中蓬勃发展。',
     pillars: [
       {
-        title: '可持续战略',
-        desc: '通过负责任的决策，创造长期价值。',
+        title: '数据优先战略',
+        desc: '基于可证实的数据，创造长期价值。',
       },
       {
         title: '创新解决方案',
@@ -39,8 +39,8 @@ export const siteContent = {
   },
   about: {
     label: '关于 Cedarest',
-    title: '以使命驱动成长。',
-    desc: '我们坚信创造持久的价值——为客户、为社区、为地球。',
+    title: '创立于2026年的金融科技公司',
+    desc: '我们坚信数据能创造持久的价值——为企业、为人类、为地球。',
     linkText: '我们的故事',
   },
   services: {
@@ -48,16 +48,16 @@ export const siteContent = {
     title: '服务项目',
     items: [
       {
-        title: '战略咨询',
-        desc: '专业战略指导，助您自信成长。',
+        title: '组合分析',
+        desc: '量化分析组合风险暴露与收益，助您优化资产配置。',
       },
       {
-        title: '定制开发',
-        desc: '为您的业务量身打造解决方案。',
+        title: '目标追踪',
+        desc: '事件驱动的跟踪策略，帮助您跟踪投资目标实现进度。',
       },
       {
-        title: '增长策略',
-        desc: '数据驱动的可持续增长方案。',
+        title: '研究报告',
+        desc: 'AI驱动的深度研究报告，提供市场洞察和投资建议。',
       },
     ],
   },
