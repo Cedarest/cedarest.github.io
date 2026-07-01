@@ -17,7 +17,6 @@ const navLinks = [
   { key: 'home' as const, href: locale === 'zh' ? '/zh/' : '/' },
   { key: 'about' as const, href: '#about' },
   { key: 'services' as const, href: '#services' },
-  { key: 'work' as const, href: '#work' },
   { key: 'contact' as const, href: '#contact' },
 ];
 ---
@@ -31,7 +30,7 @@ const navLinks = [
         <Image
           src={logoDarkText}
           alt="Cedarest"
-          class="h-[38.4px] w-auto dark:hidden"
+          class="logo-light h-[38.4px] w-auto"
           format="webp"
           quality={90}
         />
@@ -39,7 +38,7 @@ const navLinks = [
         <Image
           src={logoWhiteText}
           alt="Cedarest"
-          class="h-[38.4px] w-auto hidden dark:block"
+          class="logo-dark h-[38.4px] w-auto"
           format="webp"
           quality={90}
         />
@@ -78,15 +77,32 @@ const navLinks = [
           {t.nav.letsTalk}
         </a>
 
+        <!-- Theme Toggle Button -->
+        <button
+          id="theme-toggle"
+          class="flex items-center justify-center w-8 h-8 text-[var(--color-text)] cursor-pointer transition-colors duration-200"
+          aria-label="Toggle dark mode"
+        >
+          <!-- Sun icon (shown in dark mode) -->
+          <svg class="w-4 h-4 hidden dark-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707.707M12 8a4 4 0 100 8 4 4 0 000-8z"></path>
+          </svg>
+          <!-- Moon icon (shown in light mode) -->
+          <svg class="w-4 h-4 light-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+          </svg>
+        </button>
+
         <!-- Mobile Menu Button -->
         <button
           id="mobile-menu-btn"
-          class="md:hidden flex flex-col gap-1.5 cursor-pointer p-2"
+          class="md:hidden flex items-center justify-center w-8 h-8 cursor-pointer relative"
           aria-label="Toggle menu"
         >
-          <span class="block w-6 h-0.5 bg-[var(--color-text)] transition-transform duration-300"></span>
-          <span class="block w-6 h-0.5 bg-[var(--color-text)] transition-opacity duration-300"></span>
-          <span class="block w-6 h-0.5 bg-[var(--color-text)] transition-transform duration-300"></span>
+          <span class="absolute w-6 h-[1.5px] bg-[var(--color-text)] transition-all duration-300 -translate-y-1.5"></span>
+          <span class="absolute w-6 h-[1.5px] bg-[var(--color-text)] transition-all duration-300"></span>
+          <span class="absolute w-6 h-[1.5px] bg-[var(--color-text)] transition-all duration-300 opacity-0"></span>
+          <span class="absolute w-6 h-[1.5px] bg-[var(--color-text)] transition-all duration-300 translate-y-1.5"></span>
         </button>
       </div>
     </div>
@@ -114,27 +130,49 @@ const navLinks = [
 </div>
 
 <script>
+  // Mobile Menu Logic
   const btn = document.getElementById('mobile-menu-btn');
   const menu = document.getElementById('mobile-menu');
   const bars = btn?.querySelectorAll('span');
 
   function toggleMenu(forceClose = false) {
-    if (!menu || !bars || bars.length !== 3) return;
+    if (!menu || !bars || bars.length !== 4) return;
     
     const isCurrentlyClosed = menu.classList.contains('translate-x-full');
     
     if (forceClose || !isCurrentlyClosed) {
-      // Close menu
+      // Close menu (Return to hamburger)
       menu.classList.add('translate-x-full');
-      bars[0].classList.remove('translate-y-2', 'rotate-45');
-      bars[1].classList.remove('opacity-0');
-      bars[2].classList.remove('-translate-y-2', '-rotate-45');
+      btn?.classList.remove('menu-open');
+      bars[0].classList.remove('translate-y-0', 'rotate-45');
+      bars[0].classList.add('-translate-y-1.5');
+      
+      bars[1].classList.remove('rotate-90');
+      
+      bars[2].classList.remove('opacity-100');
+      bars[2].classList.add('opacity-0');
+      
+      bars[3].classList.remove('translate-y-0', '-rotate-45');
+      bars[3].classList.add('translate-y-1.5');
     } else {
-      // Open menu
+      // Open menu (Transform into "米" asterisk)
       menu.classList.remove('translate-x-full');
-      bars[0].classList.add('translate-y-2', 'rotate-45');
-      bars[1].classList.add('opacity-0');
-      bars[2].classList.add('-translate-y-2', '-rotate-45');
+      btn?.classList.add('menu-open');
+      
+      // Diagonal 1 (Top bar)
+      bars[0].classList.remove('-translate-y-1.5');
+      bars[0].classList.add('translate-y-0', 'rotate-45');
+      
+      // Vertical (Middle bar 1)
+      bars[1].classList.add('rotate-90');
+      
+      // Horizontal (Middle bar 2 - fades in)
+      bars[2].classList.remove('opacity-0');
+      bars[2].classList.add('opacity-100');
+      
+      // Diagonal 2 (Bottom bar)
+      bars[3].classList.remove('translate-y-1.5');
+      bars[3].classList.add('translate-y-0', '-rotate-45');
     }
   }
 
@@ -147,4 +185,66 @@ const navLinks = [
       toggleMenu(true);
     });
   });
+
+  // Dark Mode Toggle Logic
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  const sunIcon = themeToggleBtn?.querySelector('.dark-icon');
+  const moonIcon = themeToggleBtn?.querySelector('.light-icon');
+
+  // Detect and apply theme
+  function getThemePreference() {
+    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+      return localStorage.getItem('theme');
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  const currentTheme = getThemePreference();
+  const root = document.documentElement;
+
+  function updateThemeUI(theme: string) {
+    if (theme === 'dark') {
+      root.classList.add('dark');
+      root.classList.remove('light');
+      sunIcon?.classList.remove('hidden');
+      moonIcon?.classList.add('hidden');
+    } else {
+      root.classList.remove('dark');
+      root.classList.add('light');
+      sunIcon?.classList.add('hidden');
+      moonIcon?.classList.remove('hidden');
+    }
+  }
+
+  // Initialize theme
+  updateThemeUI(currentTheme);
+
+  themeToggleBtn?.addEventListener('click', () => {
+    const isDark = root.classList.contains('dark');
+    const newTheme = isDark ? 'light' : 'dark';
+    localStorage.setItem('theme', newTheme);
+    updateThemeUI(newTheme);
+  });
 </script>
+
+<style>
+  /* Handle manual toggle logic */
+  :global(html.dark) .logo-light {
+    display: none !important;
+  }
+  :global(html.light) .logo-dark {
+    display: none !important;
+  }
+
+  /* Handle fallback system preference logic before any manual button clicks */
+  @media (prefers-color-scheme: dark) {
+    :global(html:not(.light)) .logo-light {
+      display: none !important;
+    }
+  }
+  @media (prefers-color-scheme: light) {
+    :global(html:not(.dark)) .logo-dark {
+      display: none !important;
+    }
+  }
+</style>

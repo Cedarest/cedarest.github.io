@@ -12,14 +12,15 @@
 
   /* Neutrals */
   --color-bg: #FFFFFF;
-  --color-surface: #F3F4F6;
+  --color-surface: #F9FAFB;
   --color-text: #1A1A1A;
+  --color-text-secondary: #4B5563;
   --color-text-muted: #6B7280;
-  --color-border: #E5E7EB;
+  --color-border: #F0F1F3;
 
   /* Header */
   --header-bg: rgba(255, 255, 255, 0.65);
-  --header-border: rgba(255, 255, 255, 0.2);
+  --header-border: rgba(255, 255, 255, 0.15);
   --header-shadow-inset: rgba(255, 255, 255, 0.1);
   --header-shadow: rgba(0, 0, 0, 0.05);
   --header-text: #6B7280;
@@ -27,38 +28,67 @@
 
   /* Hero overlay */
   --hero-overlay-from: #FFFFFF;
-  --hero-overlay-via: rgba(255, 255, 255, 0.7);
+  --hero-overlay-via: rgba(255, 255, 255, 0.9);
 }
 
-/* ── Dark Mode ── */
+/* ── Dark Mode (Supports both system preference and manual toggle class) ── */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not(.light) {
     --color-primary: #52B788;
     --color-primary-dark: #2D6A4F;
     --color-primary-light: #1B4332;
     --color-primary-hover: #74C69D;
 
     --color-bg: #0A0A0A;
-    --color-surface: #161616;
-    --color-text: #F0F0F0;
-    --color-text-muted: #9CA3AF;
-    --color-text-secondary: #E5E7EB;
-    --color-border: #262626;
+    --color-surface: #121212;
+    --color-text: #F3F4F6;
+    --color-text-secondary: #9CA3AF;
+    --color-text-muted: #6B7280;
+    --color-border: #1F1F1F;
 
-    --header-bg: rgba(255, 255, 255, 0.3);
+    --header-bg: rgba(10, 10, 10, 0.7);
     --header-border: rgba(255, 255, 255, 0.08);
-    --header-shadow-inset: rgba(255, 255, 255, 0.06);
-    --header-shadow: rgba(0, 0, 0, 0.2);
-    --header-text: #52B788;
+    --header-shadow-inset: rgba(255, 255, 255, 0.03);
+    --header-shadow: rgba(0, 0, 0, 0.4);
+    --header-text: #9CA3AF;
     --mobile-menu-bg: rgba(10, 10, 10, 0.95);
 
-    --hero-overlay-from: rgba(10, 10, 10, 0.15);
-    --hero-overlay-via: rgba(10, 10, 10, 0.1);
+    --hero-overlay-from: rgba(10, 10, 10, 0.45);
+    --hero-overlay-via: rgba(10, 10, 10, 0.2);
   }
+}
 
-  img {
+:root.dark {
+  --color-primary: #52B788;
+  --color-primary-dark: #2D6A4F;
+  --color-primary-light: #1B4332;
+  --color-primary-hover: #74C69D;
+
+  --color-bg: #0A0A0A;
+  --color-surface: #121212;
+  --color-text: #F3F4F6;
+  --color-text-secondary: #9CA3AF;
+  --color-text-muted: #6B7280;
+  --color-border: #1F1F1F;
+
+  --header-bg: rgba(10, 10, 10, 0.7);
+  --header-border: rgba(255, 255, 255, 0.08);
+  --header-shadow-inset: rgba(255, 255, 255, 0.03);
+  --header-shadow: rgba(0, 0, 0, 0.4);
+  --header-text: #9CA3AF;
+  --mobile-menu-bg: rgba(10, 10, 10, 0.95);
+
+  --hero-overlay-from: rgba(10, 10, 10, 0.45);
+  --hero-overlay-via: rgba(10, 10, 10, 0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) img {
     filter: brightness(0.9);
   }
+}
+:root.dark img {
+  filter: brightness(0.9);
 }
 
 /* ─ Global Reset & Base ── */
